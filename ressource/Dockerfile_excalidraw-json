@@ -1,0 +1,32 @@
+FROM node:14-alpine as nodejs
+
+FROM nodejs as builder
+
+WORKDIR /excalidraw-json
+
+ARG S3_ENDPOINT
+ARG S3_ACCESS_KEY_ID
+ARG S3_SECRET_ACCESS_KEY
+ARG S3_BUCKET_NAME="excalidraw"
+ARG S3_FORCE_PATH_STYLE="true"
+ARG ALLOWED_ORIGIN="*"
+
+ENV EXCALIDRAW_S3_ENDPOINT="${S3_ENDPOINT}" \
+    EXCALIDRAW_S3_BUCKET_NAME="${S3_BUCKET_NAME}" \
+    EXCALIDRAW_S3_ACCESS_KEY_ID="${S3_ACCESS_KEY_ID}" \
+    EXCALIDRAW_S3_SECRET_ACCESS_KEY="${S3_SECRET_ACCESS_KEY}" \
+    EXCALIDRAW_S3_FORCE_PATH_STYLE="${S3_FORCE_PATH_STYLE}" \
+    EXCALIDRAW_ALLOWED_ORIGIN="${ALLOWED_ORIGIN}"
+
+COPY ./package.json ./yarn.lock ./
+
+RUN yarn
+
+COPY ./tsconfig.json ./
+COPY ./src ./src
+COPY ./pages ./pages
+
+RUN yarn build
+
+EXPOSE 3000
+CMD ["yarn", "start"]

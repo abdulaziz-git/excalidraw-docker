@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+if [[ $ENABLE_LETSENCRYPT -eq 1 ]]; then
+  exec cron -f
+fi

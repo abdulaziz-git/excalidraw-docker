@@ -1,0 +1,8 @@
+.DS_Store
+.env
+data/*
+excalidraw
+src_repo/excalidraw
+src_repo/excalidraw-room
+src_repo/excalidraw-json
+
