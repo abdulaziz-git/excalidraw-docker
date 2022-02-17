@@ -5,14 +5,14 @@ BUILDREPO=localbuild
 TZ=Asia/Jakarta
 
 # Public server name
-PUB_SRV_NAME=example.fritz.box
+PUB_SRV_NAME=draw.qrku.net
 
 # Encryption settings
 # Activate acme.sh for certificate creation
 # if you diable this, it will generate a self-signed cert
-ENABLE_LETSENCRYPT=0
+ENABLE_LETSENCRYPT=1
 LETSENCRYPT_DOMAIN="${PUB_SRV_NAME}"
-LETSENCRYPT_EMAIL="admin@${PUB_SRV_NAME}"
+LETSENCRYPT_EMAIL="usjfan@gmail.com"
 
 # Use Let's Encrypt staging server for testing
 LETSENCRYPT_USE_STAGING=0
